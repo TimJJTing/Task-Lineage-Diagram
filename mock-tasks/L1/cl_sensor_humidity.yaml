@@ -1,0 +1,26 @@
+task: "Humidity Data"
+task_id: "sensor_humidity"
+start_date: "2024-01-01"
+end_date: "2024-12-31"
+frequency: 1
+unit: "hour"
+queue: "cl"
+level: "lv1"
+runtime:
+  directory: "/data/ingestion/sensor"
+  executable: "sensor_humidity.py"
+  file: "sensor_humidity"
+  extension: "parquet"
+dependency: 
+  - task_id: "sensor_data_collection"
+    storage: "s3://company-data/ingestion/sensor"
+    unit: "hour"
+    frequency: 1
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"
+  - task_id: "weather"
+    storage: "s3://company-data/weather"
+    unit: "day"
+    frequency: 1
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"

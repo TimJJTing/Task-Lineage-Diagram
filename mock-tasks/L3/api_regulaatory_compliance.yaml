@@ -1,0 +1,26 @@
+task: "API: Regulatory Compliance Dashboard"
+task_id: "regulatory_compliance_dashboard"
+start_date: "2024-01-01"
+end_date: "2024-12-31"
+frequency: 1
+unit: "day"
+queue: "api"
+level: "lv3"
+runtime:
+  directory: "/data/api/compliance"
+  executable: "compliance_api.py"
+  file: "regulatory_compliance"
+  extension: "json"
+dependency:
+  - task_id: "government_regulations_fetch"
+    storage: "s3://company-data/government/regulations"
+    unit: "month"
+    frequency: 1
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"
+  - task_id: "predictive_maintenance_model"
+    storage: "s3://company-data/maintenance/predictions"
+    unit: "week"
+    frequency: 1
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"

@@ -1,0 +1,20 @@
+task: "Social Media Sentiment Analysis"
+task_id: "social_media_sentiment_analysis"
+start_date: "2024-01-01"
+end_date: "2024-12-31"
+frequency: 1
+unit: "day"
+queue: "ml"
+level: "lv2"
+runtime:
+  directory: "/company-data/social_media/sentiment"
+  executable: "social_media_sentiment_analysis.py"
+  file: "sentiment"
+  extension: "parquet"
+dependency: 
+  - task_id: "social_media_discussions"
+    storage: "s3://company-data/social_media/discussions"
+    unit: "day"
+    frequency: 1
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"

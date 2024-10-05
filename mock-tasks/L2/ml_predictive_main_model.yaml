@@ -1,0 +1,32 @@
+task: "Predictive Maintenance Model"
+task_id: "predictive_maintenance_model"
+start_date: "2024-01-01"
+end_date: "2024-12-31"
+frequency: 1
+unit: "week"
+queue: "ml"
+level: "lv2"
+runtime:
+  directory: "/company-data/fleet/maintenance"
+  executable: "predictive_maintenance_model.py"
+  file: "maintenance_model"
+  extension: "pickle"
+dependency: 
+  - task_id: "fab_pipeline_data_sync"
+    storage: "s3://company-data/fab_pipeline/data"
+    unit: "week"
+    frequency: 1
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"
+  - task_id: "vehicle_maintenance_records_import"
+    storage: "s3://company-data/fleet/maintenance_records"
+    unit: "week"
+    frequency: 1
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"
+  - task_id: "fleet_optimization_model"
+    storage: "s3://company-data/fleet/optimization"
+    unit: "day"
+    frequency: 1
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"

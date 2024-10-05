@@ -1,0 +1,32 @@
+task: "API: Fleet Dashboard"
+task_id: "fleet_dashboard"
+start_date: "2024-01-01"
+end_date: "2024-12-31"
+frequency: 1
+unit: "day"
+queue: "api"
+level: "lv3"
+runtime:
+  directory: "/data/api/fleet"
+  executable: "fleet_api.py"
+  file: "fleet"
+  extension: "json"
+dependency:
+  - task_id: "vehicle_profile"
+    storage: "s3://company-data/vehicle"
+    unit: "day"
+    frequency: 1
+    start_date: "2024-01-01"
+    end_date: "2024-12-31" 
+  - task_id: "fleet_optimization_model"
+    storage: "s3://company-data/fleet/optimization"
+    unit: "day"
+    frequency: 1
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"
+  - task_id: "predictive_maintenance_model"
+    storage: "s3://company-data/fleet/maintenance"
+    unit: "week"
+    frequency: 1
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"

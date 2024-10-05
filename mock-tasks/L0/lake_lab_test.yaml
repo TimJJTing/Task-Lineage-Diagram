@@ -1,0 +1,13 @@
+task: "Lab Test Data Ingestion"
+task_id: "lab_test_data_ingestion"
+start_date: "2024-01-01"
+end_date: "2024-12-31"
+frequency: 1
+unit: "week"
+queue: "ingestion"
+level: "lv0"
+runtime:
+  directory: "/data/ingestion/lab_tests"
+  executable: "lab_tests_ingestion.sh"
+  file: "lab_test_results"
+  extension: "csv"

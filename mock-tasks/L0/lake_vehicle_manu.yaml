@@ -1,0 +1,13 @@
+task: "Vehicle Manufacture Records"
+task_id: "vehicle_manufacture_records_import"
+start_date: "2024-01-01"
+end_date: "2024-12-31"
+frequency: 1
+unit: "week"
+queue: "ingestion"
+level: "lv0"
+runtime:
+  directory: "/data/ingestion/manufacture_records"
+  executable: "manufacture_records_ingestion.py"
+  file: "manufacture_records"
+  extension: "csv"

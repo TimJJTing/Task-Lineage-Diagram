@@ -1,0 +1,39 @@
+task: "Sales Forecast"
+task_id: "sales_forecast"
+start_date: "2024-01-01"
+end_date: "2024-12-31"
+frequency: 1
+unit: "day"
+queue: "ml"
+level: "lv2"
+runtime:
+  directory: "/data/sales_forecast"
+  executable: "python"
+  file: "sales_forecast"
+  extension: "py"
+
+dependency:
+  - task_id: "market_research_fetch"
+    storage: "s3://company-data/ingestion_external/market"
+    unit: "month"
+    frequency: 1
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"
+  - task_id: "customer_profile"
+    storage: "s3://company-data/customer/profile"
+    unit: "day"
+    frequency: 1
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"
+  - task_id: "social_media_sentiment_analysis"
+    storage: "s3://company-data/social_media/sentiment"
+    unit: "day"
+    frequency: 1
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"
+  - task_id: "sales_data_cleansing"
+    storage: "s3://company-data/sales"
+    unit: "day"
+    frequency: 1
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"

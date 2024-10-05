@@ -1,0 +1,13 @@
+task: "X Crawler"
+task_id: "x_crawler"
+start_date: "2024-01-01"
+end_date: "2024-12-31"
+frequency: 1
+unit: "hour"
+queue: "ingestion"
+level: "lv0"
+runtime:
+  directory: "/company-data/social_media/x/raw"
+  executable: "x_crawler.py"
+  file: "fetch"
+  extension: "json"

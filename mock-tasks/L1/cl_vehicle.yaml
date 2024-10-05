@@ -1,0 +1,27 @@
+task: "Vehicle Profile"
+task_id: "vehicle_profile"
+start_date: "2024-01-01"
+end_date: "2024-12-31"
+frequency: 1
+unit: "day"
+queue: "cl"
+level: "lv1"
+runtime:
+  directory: "/company-data/vehicle/profile"
+  executable: "python"
+  file: "profile"
+  extension: "py"
+
+dependency:
+  - task_id: "vehicle_manufacture_records_import"
+    storage: "s3://data/ingestion/vehicle"
+    unit: "day"
+    frequency: 1
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"
+  - task_id: "dmv_record_fetch"
+    storage: "s3://data/ingestion/dmv"
+    unit: "week"
+    frequency: 1
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"

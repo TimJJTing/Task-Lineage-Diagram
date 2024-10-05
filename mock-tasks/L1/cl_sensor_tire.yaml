@@ -1,0 +1,26 @@
+task: "Lidar Data"
+task_id: "sensor_tire"
+start_date: "2024-01-01"
+end_date: "2024-12-31"
+frequency: 1
+unit: "hour"
+queue: "cl"
+level: "lv1"
+runtime:
+  directory: "/data/ingestion/sensor"
+  executable: "sensor_tire.py"
+  file: "sensor_tire"
+  extension: "parquet"
+dependency: 
+  - task_id: "sensor_data_collection"
+    storage: "s3://company-data/ingestion/sensor"
+    unit: "hour"
+    frequency: 1
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"
+  - task_id: "tire_spec_fetch"
+    storage: "s3://company-data/ingestion/tire_spec"
+    unit: "month"
+    frequency: 1
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"

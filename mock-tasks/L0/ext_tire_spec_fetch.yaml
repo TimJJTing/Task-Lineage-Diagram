@@ -1,0 +1,13 @@
+task: "Tire Spec Fetch"
+task_id: "tire_spec_fetch"
+start_date: "2024-01-01"
+end_date: "2024-12-31"
+frequency: 1
+unit: "month"
+queue: "ingestion_external"
+level: "lv0"
+runtime:
+  directory: "/data/ingestion_external/tire_spec"
+  executable: "tspec.py"
+  file: "t_spec"
+  extension: "csv"

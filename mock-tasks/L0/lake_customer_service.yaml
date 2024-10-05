@@ -1,0 +1,13 @@
+task: "Customer Service Logs Import"
+task_id: "customer_service_logs_import"
+start_date: "2024-01-01"
+end_date: "2024-12-31"
+frequency: 1
+unit: "day"
+queue: "ingestion"
+level: "lv0"
+runtime:
+  directory: "/data/ingestion/customer_logs"
+  executable: "customer_logs_ingestion.py"
+  file: "customer_service_logs"
+  extension: "txt"

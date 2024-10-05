@@ -1,0 +1,32 @@
+task: "API: Maintenance Insights"
+task_id: "maintenance_insights"
+start_date: "2024-01-01"
+end_date: "2024-12-31"
+frequency: 1
+unit: "hour"
+queue: "api"
+level: "lv3"
+runtime:
+  directory: "/data/api/maintenance"
+  executable: "maintenance_insight.py"
+  file: "maintenance_insights"
+  extension: "json"
+dependency:
+  - task_id: "vehicle_profile"
+    storage: "s3://company-data/vehicle"
+    unit: "day"
+    frequency: 1
+    start_date: "2024-01-01"
+    end_date: "2024-12-31" 
+  - task_id: "predictive_maintenance_model"
+    storage: "s3://company-data/maintenance/predictions"
+    unit: "day"
+    frequency: 1
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"
+  - task_id: "vehicle_maintenance_records_import"
+    storage: "s3://company-data/ingestion/maintenance_records"
+    unit: "day"
+    frequency: 1
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"

@@ -1,0 +1,32 @@
+task: "Sales Data Cleansing"
+task_id: "sales_data_cleansing"
+start_date: "2024-01-01"
+end_date: "2024-12-31"
+frequency: 1
+unit: "day"
+queue: "cl"
+level: "lv1"
+runtime:
+  directory: "/data/sales"
+  executable: "sales_data_cleansing.py"
+  file: "sales_data_clean"
+  extension: "parquet"
+dependency:
+  - task_id: "customer_service_logs_import"
+    storage: "s3://data/ingestion/customer_logs"
+    unit: "day"
+    frequency: 1
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"
+  - task_id: "sales_data_import"
+    storage: "s3://data/ingestion/sales_data"
+    unit: "day"
+    frequency: 1
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"
+  - task_id: "transaction_data_cleansing"
+    storage: "s3://company-data/transaction"
+    unit: "day"
+    frequency: 1
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"

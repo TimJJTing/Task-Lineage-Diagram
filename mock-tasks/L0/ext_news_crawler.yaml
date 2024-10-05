@@ -1,0 +1,13 @@
+task: "News Crawler"
+task_id: "news_crawler"
+start_date: "2024-01-01"
+end_date: "2024-12-31"
+frequency: 1
+unit: "hour"
+queue: "ingestion"
+level: "lv0"
+runtime:
+  directory: "/company-data/social_media/news/raw"
+  executable: "news_crawler.py"
+  file: "fetch"
+  extension: "json"

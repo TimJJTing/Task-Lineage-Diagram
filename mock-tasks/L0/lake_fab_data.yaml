@@ -1,0 +1,13 @@
+task: "Fab Pipeline Data Sync"
+task_id: "fab_pipeline_data_sync"
+start_date: "2024-01-01"
+end_date: "2024-12-31"
+frequency: 1
+unit: "hour"
+queue: "ingestion"
+level: "lv0"
+runtime:
+  directory: "/data/ingestion/fab_pipeline"
+  executable: "fab_pipeline_sync.sh"
+  file: "fab_pipeline_data"
+  extension: "parquet"

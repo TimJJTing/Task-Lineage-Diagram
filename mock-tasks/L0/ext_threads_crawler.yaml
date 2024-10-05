@@ -1,0 +1,13 @@
+task: "Threads Crawler"
+task_id: "threads_crawler"
+start_date: "2024-01-01"
+end_date: "2024-12-31"
+frequency: 1
+unit: "hour"
+queue: "ingestion"
+level: "lv0"
+runtime:
+  directory: "/company-data/social_media/threads/raw"
+  executable: "threads_crawler.py"
+  file: "fetch"
+  extension: "json"

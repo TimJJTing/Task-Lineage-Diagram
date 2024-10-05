@@ -1,0 +1,44 @@
+task: "KPI Benchmarking"
+task_id: "kpi_benchmarking"
+start_date: "2024-01-01"
+end_date: "2024-12-31"
+frequency: 1
+unit: "day"
+queue: "ml"
+level: "lv2"
+runtime:
+  directory: "/company-data/kpi/benchmark"
+  executable: "kpi_benchmark.py"
+  file: "kpi"
+  extension: "parquet"
+dependency: 
+  - task_id: "social_media_sentiment_analysis"
+    storage: "s3://company-data/social_media/sentiment"
+    unit: "day"
+    frequency: 1
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"
+  - task_id: "customer_sentiment_analysis"
+    storage: "s3://company-data/customer/sentiment"
+    unit: "day"
+    frequency: 1
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"
+  - task_id: "fleet_optimization_model"
+    storage: "s3://company-data/fleet/optimization"
+    unit: "day"
+    frequency: 1
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"
+  - task_id: "predictive_maintenance_model"
+    storage: "s3://company-data/fleet/maintenance"
+    unit: "day"
+    frequency: 1
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"
+  - task_id: "sales_forecast"
+    storage: "s3://company-data/sales/forecast"
+    unit: "day"
+    frequency: 1
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"

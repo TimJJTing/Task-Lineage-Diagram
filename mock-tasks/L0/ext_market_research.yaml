@@ -1,0 +1,13 @@
+task: "Market Research Report Fetch"
+task_id: "market_research_fetch"
+start_date: "2024-01-01"
+end_date: "2024-12-31"
+frequency: 1
+unit: "month"
+queue: "ingestion_external"
+level: "lv0"
+runtime:
+  directory: "/data/ingestion_external/market"
+  executable: "market_research.py"
+  file: "marker_research_fetch"
+  extension: "csv"

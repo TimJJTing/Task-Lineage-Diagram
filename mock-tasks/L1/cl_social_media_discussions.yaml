@@ -1,0 +1,44 @@
+task: "Social Media Discussions"
+task_id: "social_media_discussions"
+start_date: "2024-01-01"
+end_date: "2024-12-31"
+frequency: 1
+unit: "day"
+queue: "cl"
+level: "lv2"
+runtime:
+  directory: "/company-data/social_media/discussions"
+  executable: "social_media_discussions.py"
+  file: "discussions"
+  extension: "parquet"
+dependency: 
+  - task_id: "x_crawler"
+    storage: "s3://company-data/social_media/x/raw"
+    unit: "hour"
+    frequency: 4
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"
+  - task_id: "fb_crawler"
+    storage: "s3://company-data/social_media/fb/raw"
+    unit: "hour"
+    frequency: 4
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"
+  - task_id: "ig_crawler"
+    storage: "s3://company-data/social_media/ig/raw"
+    unit: "hour"
+    frequency: 4
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"
+  - task_id: "news_crawler"
+    storage: "s3://company-data/social_media/news/raw"
+    unit: "hour"
+    frequency: 4
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"
+  - task_id: "threads_crawler"
+    storage: "s3://company-data/social_media/treads/raw"
+    unit: "hour"
+    frequency: 4
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"

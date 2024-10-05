@@ -1,0 +1,50 @@
+# This is an example .goreleaser.yml file with some sensible defaults.
+# Make sure to check the documentation at https://goreleaser.com
+project_name: tld
+before:
+  hooks:
+    # You may remove this if you don't use go modules.
+    - go mod tidy
+    # you may remove this if you don't need go generate
+    # - go generate ./...
+builds:
+  - env:
+      - CGO_ENABLED=1
+    goos:
+      - linux
+      # - darwin
+      # - windows
+    goarch:
+      - amd64
+      # - arm64
+      # - 386
+archives:
+  - name_template: >-
+      {{- .ProjectName }}_
+      {{- title .Os }}_
+      {{- if eq .Arch "amd64" }}x86_64
+      {{- else if eq .Arch "386" }}i386
+      {{- else }}{{ .Arch }}{{ end }}
+      {{- if .Arm }}v{{ .Arm }}{{ end -}}
+    wrap_in_directory: true
+checksum:
+  name_template: "checksums.txt"
+snapshot:
+  name_template: "{{ incpatch .Version }}-next"
+changelog:
+  sort: desc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+source:
+  # Whether this pipe is enabled or not.
+  # Defaults to `false`
+  enabled: true
+  # Name template of the final archive.
+  # Defaults to `{{ .ProjectName }}-{{ .Version }}`
+  name_template: "{{ .ProjectName }}-{{ .Version }}_Source"
+# github_urls: TODO
+#   api: https://github.com/api/
+#   download: https://github.com
+

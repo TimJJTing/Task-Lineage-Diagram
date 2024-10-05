@@ -1,0 +1,26 @@
+task: "API: Public Relations Dashboard"
+task_id: "public_relations"
+start_date: "2024-01-01"
+end_date: "2024-12-31"
+frequency: 1
+unit: "day"
+queue: "api"
+level: "lv3"
+runtime:
+  directory: "/data/api/pr"
+  executable: "public_relations_api.py"
+  file: "public_relations"
+  extension: "json"
+dependency:
+  - task_id: "customer_sentiment_analysis"
+    storage: "s3://company-data/customer/sentiment"
+    unit: "day"
+    frequency: 1
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"
+  - task_id: "social_media_sentiment_analysis"
+    storage: "s3://company-data/social_media/sentiment"
+    unit: "day"
+    frequency: 1
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"

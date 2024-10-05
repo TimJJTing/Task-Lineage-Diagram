@@ -1,0 +1,33 @@
+task: "Customer Profile"
+task_id: "customer_profile"
+start_date: "2024-01-01"
+end_date: "2024-12-31"
+frequency: 1
+unit: "day"
+queue: "cl"
+level: "lv1"
+runtime:
+  directory: "/company-data/customer/profile"
+  executable: "python"
+  file: "profile"
+  extension: "py"
+
+dependency:
+  - task_id: "customer_service_logs_import"
+    storage: "s3://data/ingestion/customer_logs"
+    unit: "day"
+    frequency: 1
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"
+  - task_id: "dmv_record_fetch"
+    storage: "s3://data/ingestion/dmv"
+    unit: "week"
+    frequency: 1
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"
+  - task_id: "transaction_data_cleansing"
+    storage: "s3://company-data/transaction"
+    unit: "day"
+    frequency: 1
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"

@@ -1,0 +1,20 @@
+task: "API: KPI Dashboard"
+task_id: "kpi_dashboard"
+start_date: "2024-01-01"
+end_date: "2024-12-31"
+frequency: 1
+unit: "day"
+queue: "api"
+level: "lv3"
+runtime:
+  directory: "/data/api/kpi"
+  executable: "kpi_api.py"
+  file: "kpi"
+  extension: "json"
+dependency:
+  - task_id: "kpi_benchmarking"
+    storage: "s3://company-data/kpi/benchmark"
+    unit: "month"
+    frequency: 1
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"

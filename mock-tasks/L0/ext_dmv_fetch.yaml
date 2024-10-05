@@ -1,0 +1,13 @@
+task: "DMV Record Fetch"
+task_id: "dmv_record_fetch"
+start_date: "2024-01-01"
+end_date: "2024-12-31"
+frequency: 1
+unit: "week"
+queue: "ingestion_external"
+level: "lv0"
+runtime:
+  directory: "/data/ingestion_external/dmv"
+  executable: "dmv.py"
+  file: "dmv_record"
+  extension: "csv"

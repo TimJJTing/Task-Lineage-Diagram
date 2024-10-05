@@ -1,0 +1,13 @@
+task: "Sales Data Import"
+task_id: "sales_data_import"
+start_date: "2024-01-01"
+end_date: "2024-12-31"
+frequency: 1
+unit: "day"
+queue: "ingestion"
+level: "lv0"
+runtime:
+  directory: "/data/ingestion/sales_data"
+  executable: "sales_data.py"
+  file: "sales_data"
+  extension: "csv"

@@ -1,0 +1,20 @@
+task: "API: Sales Forecast Queries"
+task_id: "sales_dashboard"
+start_date: "2024-01-01"
+end_date: "2024-12-31"
+frequency: 1
+unit: "day"
+queue: "api"
+level: "lv3"
+runtime:
+  directory: "/data/api/sales"
+  executable: "sales_api.py"
+  file: "sales_dashboard"
+  extension: "json"
+dependency:
+  - task_id: "sales_forecast"
+    storage: "s3://company-data/sales/forecast"
+    unit: "day"
+    frequency: 1
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"
