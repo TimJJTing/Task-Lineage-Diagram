@@ -86,7 +86,7 @@ The data team I work with has developed a custom-built data pipeline consisting 
 
 At the time, I frequently used GraphViz to create charts, and I realized it could be an ideal tool for visualizing task lineages. The key was to ensure it runs automatically whenever task specifications are updated. Since we use GitLab for version control, I leveraged GitLab CI to trigger jobs on code commits. The next question was how to encapsulate GraphViz within a CI environment and generate lineage diagrams from task specifications.
 
-After some research, I found the Golang package [goccy/go-graphviz](https://github.com/goccy/go-graphviz), which provided all the necessary features, including graph representation and traversal via a Golang API. Along with the [YAML package](gopkg.in/yaml.v3) for reading task specifications, I was able to compile the entire project into a small binary that others could use, or package it into a Docker image for integration into CI tasks. The workflow was structured as follows:
+After some research, I found the Golang package [goccy/go-graphviz](https://github.com/goccy/go-graphviz), which provided all the necessary features, including graph representation and traversal via a Golang API. Along with the [YAML package](https://gopkg.in/yaml.v3) for reading task specifications, I was able to compile the entire project into a small binary that others could use, or package it into a Docker image for integration into CI tasks. The workflow was structured as follows:
 
 ```mermaid
 flowchart LR
