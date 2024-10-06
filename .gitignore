@@ -1,9 +1,9 @@
 *.png
 *.jpg
 *.json
-*.svg
+.svg
 *.gv
-*.dot
+.dot
 interface/*.svg
 interface/*.json
 .vscode

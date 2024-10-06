@@ -230,7 +230,7 @@ func Render(tasks map[string]schema.Task, filename string, config *schema.Config
 	graph.SetLabel("Task Lineage Diagram")
 	graph.SetFontSize(120)
 	graph.SetLabelLocation("t")
-	graph.SetLabelJust("r")
+	graph.SetLabelJust("l")
 	if groupCluster {
 		graph.SetClusterRank("local")
 	} else {

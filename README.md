@@ -1,23 +1,23 @@
-# Task Lineage Diagram
+# Task Lineage Generator
 
 A simple tool for rendering task lineage diagrams written in Golang.
 
 ![Task Lineage Diagram (Colored)](example-dot.svg)
 
-![Task Lineage Diagram (BW)](example-dot-bw.svg)
+![Task Lineage Diagram (interactive)](demo.gif)
 
 ## Usage
 
 ```text
 Usage:
-  tld [flags]
+  tlg [flags]
 
 Flags:
   -k, --config          Path for yaml config file. (default "config.yaml")
   -c, --color           Color mode. If turned on, the output is colored.
   -f, --format string   Output file format, one of [svg, dot, png, jpg]. (default "svg")
   -g, --group           Group Layer. If turned on, nodes under the same layer are grouped together, which means they are placed next to each other if possible. (recommended)
-  -h, --help            help for tld
+  -h, --help            help for tlg
   -i, --input string    Root directory for yaml files. (default ".")
   -l, --layout string   Graph Layout. Currently support [circo, dot, fdp, neato, osage, patchwork, sfdp, twopi]. (default "dot")
   -n, --no-reach        Turn this on to skip the reachability analysis.
@@ -39,17 +39,24 @@ go run main.go {-i [taskYamlRootDir]} {-o [targetFile]} {-f [format]} {-g} {-l [
 For example
 
 ```sh
+# for colored lineage
 go run main.go -i ./mock-tasks -o dot.svg -f svg -l dot -c -g
+# for bw lineage
+go run main.go -i ./mock-tasks -o dot.svg -f svg -l dot -g
 ```
+
+![Task Lineage Diagram (Colored)](example-dot.svg)
+
+![Task Lineage Diagram (BW)](example-dot-bw.svg)
 
 ### Compile and Run
 
 ```sh
 # compile
-GOFLAGS=-mod=mod go build -o bin/tld main.go
+GOFLAGS=-mod=mod go build -o bin/tlg main.go
 
 # run the binary
-./bin/tld {-i [taskYamlRootDir]} {-o [targetFile]} {-f [format]} {-g} {-l [layout]} {-c} {-n} {-r [reachabilityFile]}
+./bin/tlg {-i [taskYamlRootDir]} {-o [targetFile]} {-f [format]} {-g} {-l [layout]} {-c} {-n} {-r [reachabilityFile]}
 ```
 
 ## Project Organization
@@ -63,7 +70,7 @@ GOFLAGS=-mod=mod go build -o bin/tld main.go
 
 ## Project Background
 
-The data team I work with has developed a custom-built data pipeline consisting of ETL processes and machine learning models. When a task fails or is delayed, all subsequent tasks must be rerun. The challenge lies in determining the cascading effects of rerunning a task, as our pipeline includes over 200 tasks with complex interdependencies. Apart from common issues like data inconsistency and database overloads, understanding the downstream impact of an upstream task trigger has been a significant challenge. While Apache Airflow offers a clear solution, implementing it would require extensive resources—rewriting the entire pipeline, deploying to our servers, and getting the entire team up to speed. Given the constraints at the time, I set out to develop a simpler solution that could integrate seamlessly into our existing pipeline without code migration. I believed that a well-designed visualization tool would resolve the lack of clarity.
+The data team I work with has developed a custom-built data pipeline consisting of ETL processes and machine learning models. When a task fails or is delayed, all subsequent tasks must be rerun. The challenge lies in determining the cascading effects of rerunning a task, as our pipeline includes over 250 tasks with complex interdependencies. Apart from common issues like data inconsistency and database overloads, understanding the downstream impact of an upstream task trigger has been a significant challenge. While Apache Airflow offers a clear solution, implementing it would require extensive resources—rewriting the entire pipeline, deploying to our servers, and getting the entire team up to speed. Given the constraints at the time, I set out to develop a simpler solution that could integrate seamlessly into our existing pipeline without code migration. I believed that a well-designed visualization tool would resolve the lack of clarity.
 
 ### Project Goal
 
@@ -83,7 +90,7 @@ After some research, I found the Golang package [goccy/go-graphviz](https://gith
 
 ```mermaid
 flowchart LR
-    subgraph tool["Task Lineage Diagram CLI"]
+    subgraph tool["Task Lineage Generator CLI"]
     reader["YAML Reader"] --> node["Draw Nodes"] --> edge["Draw Edges"] --> out1["Construct Graph Meta"] --> out2["Output Diagram"]
     end
     yaml["Task Configs (YAML)"] --> tool
@@ -95,7 +102,7 @@ And the setup for the CI/CD pipeline:
 
 1. Import task configurations as submodules of a main repo
 2. For every task configuration update, trigger main repo’s reference update to trigger its CI
-3. Run Task Lineage Diagram in main repo's CI
+3. Run Task Lineage Generator in main repo's CI
 4. In the end of the CI, publish the lineage diagram
 
 #### Interactive Interface

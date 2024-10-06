@@ -1,8 +1,8 @@
-# Task Lineage Diagram
+# Task Lineage Generator
 
 ## v0.1.0
 
-- change name to `Task Lineage Diagram`
+- change name to `Task Lineage Generator`
 - update examples
 
 ## v0.0.1-alpha.1

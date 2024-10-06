@@ -1,10 +1,12 @@
 # Task Lineage Diagram Interface
 
+![Task Lineage Diagram (interactive)](../demo.gif)
+
 ## Usage
 
 To use the interface, you should:
 
-1. Put `dot.svg` and `reachability.json` generated from the same batch into this folder. You can also use the example files from the project root, just remember to rename them to `dot.svg` and `reachability.json`.
+1. Put `dot.svg` and `reachability.json` generated from the SAME BATCH into this folder. You can also use the example files from the project root, just remember to rename them to `dot.svg` and `reachability.json`.
 2. Use a local http server to host these files, e.g.:
 
    ```sh
@@ -12,3 +14,5 @@ To use the interface, you should:
    ```
 
 3. Now you should be able to use it at localhost:3000.
+
+> Note: `dot.svg` and `reachability.json` has to be generated from the same batch, otherwise the interface will behave weirdly
