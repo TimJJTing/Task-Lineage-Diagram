@@ -1,6 +1,6 @@
 # Task Lineage Generator
 
-A simple tool for rendering task lineage diagrams written in Golang.
+A simple tool for rendering task lineage diagrams written in Golang. Try [Live Demo](https://timjjting.github.io/Task-Lineage-Generator/index.html)
 
 ![Task Lineage Diagram (Colored)](example-dot.svg)
 
