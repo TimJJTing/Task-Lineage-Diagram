@@ -1,15 +1,5 @@
-*.png
-*.jpg
-*.json
-.svg
 *.gv
 .dot
-interface/*.svg
-interface/*.json
 .vscode
 bin
-!example-dot.svg
-!example-circo.svg
-!example-dot-bw.svg
-!example-reachability.json
 dist/

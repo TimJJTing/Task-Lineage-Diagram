@@ -2,7 +2,7 @@
 
 A simple tool for rendering task lineage diagrams written in Golang. Try [Live Demo](https://timjjting.github.io/Task-Lineage-Generator/interface/index.html)
 
-![Task Lineage Diagram (Colored)](example-dot.svg)
+![Task Lineage Diagram (Colored)](dot.svg)
 
 ![Task Lineage Diagram (interactive)](demo.gif)
 
@@ -13,7 +13,7 @@ Usage:
   tlg [flags]
 
 Flags:
-  -k, --config          Path for yaml config file. (default "config.yaml")
+  -k, --config          Path for the yaml configuration file. (default "config.yaml")
   -c, --color           Color mode. If turned on, the output is colored.
   -f, --format string   Output file format, one of [svg, dot, png, jpg]. (default "svg")
   -g, --group           Group Layer. If turned on, nodes under the same layer are grouped together, which means they are placed next to each other if possible. (recommended)
@@ -25,6 +25,56 @@ Flags:
   -r, --reach string    Output file path for the reachability analysis report. (default "reachability.json")
   -s, --size string     Graph size. Currently only support [fhd, a3]. (default "fhd")
 ```
+
+### Task YAMLs
+
+A task configuration (input) should look like this:
+
+```yaml
+task: "task_name"
+task_id: "task_0"
+start_date: "2024-01-01"
+end_date: "2024-12-31"
+frequency: 1
+unit: "day"
+queue: "cl"
+level: "lv1" # tld uses this to group tasks
+runtime:
+  directory: "/data/tasks"
+  executable: "python"
+  file: "task"
+  extension: "py"
+dependency: # dependency tasks, this entry is optional
+  - task_id: "task_1" # links to another task
+    storage: "s3://data/tasks/task_1"
+    unit: "day"
+    frequency: 1
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"
+  - task_id: "task_2" # links to another task
+    storage: "s3://data/tasks/task_2"
+    unit: "week"
+    frequency: 2
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"
+```
+
+### Config YAML
+
+The configuration file, `config.yaml`, should look like this:
+
+```yaml
+# color mapping for task levels
+colors:
+  # level_name: color_hex
+  lv0: "#0074FF"
+  lv1: "#17C3FF"
+  lv2: "#7ADEF4"
+  lv3: "#40FDCB"
+  default: "#FFAE10"
+```
+
+You can have your own mapping.
 
 ## Run the Source
 
@@ -45,9 +95,13 @@ go run main.go -i ./mock-tasks -o dot.svg -f svg -l dot -c -g
 go run main.go -i ./mock-tasks -o dot.svg -f svg -l dot -g
 ```
 
-![Task Lineage Diagram (Colored)](example-dot.svg)
+yield this
 
-![Task Lineage Diagram (BW)](example-dot-bw.svg)
+![Task Lineage Diagram (Colored)](dot.svg)
+
+and this
+
+![Task Lineage Diagram (BW)](dot-bw.svg)
 
 ### Compile and Run
 
